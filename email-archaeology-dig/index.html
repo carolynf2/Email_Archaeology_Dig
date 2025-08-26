@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Archaeology Dig</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="site-header">
+                <h1>🏛️ EMAIL ARCHAEOLOGY DIG</h1>
+                <p class="site-tagline">Excavating Digital Deceptions</p>
+            </div>
+            
+            <div class="archaeologist-intro">
+                <div class="archaeologist-avatar">🧑‍🏫</div>
+                <div class="intro-text">
+                    <h3>Welcome, Digital Archaeologist!</h3>
+                    <p>You've been called to investigate suspicious email excavation sites. Each dig contains layers of email conversations with increasingly sophisticated phishing attempts buried within seemingly legitimate correspondence.</p>
+                    <p>Use your digital forensics tools to carefully excavate and analyze each layer, uncovering the hidden threats beneath the surface.</p>
+                </div>
+            </div>
+
+            <div class="menu-options">
+                <button class="dig-button primary" onclick="showSiteSelection()">🗺️ START EXCAVATION</button>
+                <button class="dig-button" onclick="showArtifacts()">🏺 ARTIFACT COLLECTION</button>
+                <button class="dig-button" onclick="showTools()">🔧 FORENSICS TOOLKIT</button>
+                <button class="dig-button" onclick="showInstructions()">📖 FIELD GUIDE</button>
+            </div>
+
+            <div class="archaeologist-stats">
+                <div class="stat-card">
+                    <h3>🎓 Experience Level</h3>
+                    <p id="experience-level">Novice Digger</p>
+                </div>
+                <div class="stat-card">
+                    <h3>🏺 Artifacts Found</h3>
+                    <p id="artifacts-found">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>📧 Sites Excavated</h3>
+                    <p id="sites-excavated">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions Screen -->
+        <div id="instructions" class="screen">
+            <div class="field-guide">
+                <h2>📖 DIGITAL ARCHAEOLOGIST'S FIELD GUIDE</h2>
+                <div class="guide-content">
+                    <div class="guide-section">
+                        <h3>🎯 Your Mission</h3>
+                        <p>Excavate layers of email conversations to uncover hidden phishing attempts. Each dig site contains multiple email layers, with threats becoming more sophisticated as you dig deeper.</p>
+                    </div>
+
+                    <div class="guide-section">
+                        <h3>🏗️ Excavation Process</h3>
+                        <ol>
+                            <li><strong>Survey the Site:</strong> Examine the surface layer of emails</li>
+                            <li><strong>Select Tools:</strong> Choose appropriate digital forensics tools</li>
+                            <li><strong>Excavate Layers:</strong> Carefully dig through conversation layers</li>
+                            <li><strong>Analyze Evidence:</strong> Use tools to examine headers, links, and patterns</li>
+                            <li><strong>Document Findings:</strong> Record discovered threats and artifacts</li>
+                        </ol>
+                    </div>
+
+                    <div class="guide-section">
+                        <h3>🔧 Digital Tools</h3>
+                        <ul>
+                            <li><strong>🔍 Header Analyzer:</strong> Examine email routing and authentication</li>
+                            <li><strong>🔗 Link Inspector:</strong> Trace URLs and identify redirects</li>
+                            <li><strong>📝 Linguistic Scanner:</strong> Analyze language patterns and anomalies</li>
+                            <li><strong>🕰️ Timeline Mapper:</strong> Track conversation chronology</li>
+                            <li><strong>🌐 Domain Researcher:</strong> Investigate sender domains and reputation</li>
+                            <li><strong>📊 Pattern Detector:</strong> Identify recurring phishing tactics</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-section">
+                        <h3>🏺 Artifact Types</h3>
+                        <ul>
+                            <li><strong>🎭 Spoofed Identities:</strong> Fake sender impersonations</li>
+                            <li><strong>🔗 Malicious Links:</strong> Suspicious or harmful URLs</li>
+                            <li><strong>📎 Dangerous Attachments:</strong> Potentially infected files</li>
+                            <li><strong>💰 Social Engineering:</strong> Manipulation attempts</li>
+                            <li><strong>⚡ Urgency Tactics:</strong> Artificial deadline pressure</li>
+                            <li><strong>🎣 Credential Harvesting:</strong> Password/info theft attempts</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="dig-button" onclick="showMainMenu()">🏠 BACK TO BASE CAMP</button>
+            </div>
+        </div>
+
+        <!-- Tools Screen -->
+        <div id="tools-guide" class="screen">
+            <div class="field-guide">
+                <h2>🔧 DIGITAL FORENSICS TOOLKIT</h2>
+                <div id="tools-catalog" class="tools-catalog">
+                    <!-- Tools will be populated by JavaScript -->
+                </div>
+                <button class="dig-button" onclick="showMainMenu()">🏠 BACK TO BASE CAMP</button>
+            </div>
+        </div>
+
+        <!-- Artifacts Collection Screen -->
+        <div id="artifacts-collection" class="screen">
+            <div class="field-guide">
+                <h2>🏺 ARTIFACT COLLECTION</h2>
+                <div id="artifacts-display" class="artifacts-display">
+                    <!-- Discovered artifacts will be populated by JavaScript -->
+                </div>
+                <button class="dig-button" onclick="showMainMenu()">🏠 BACK TO BASE CAMP</button>
+            </div>
+        </div>
+
+        <!-- Site Selection Screen -->
+        <div id="site-selection" class="screen">
+            <div class="excavation-map">
+                <h2>🗺️ EXCAVATION SITES</h2>
+                <div class="map-intro">
+                    <p>Choose an excavation site to investigate. Each site contains multiple layers of email conversations with hidden phishing threats.</p>
+                </div>
+                <div id="sites-grid" class="sites-grid">
+                    <!-- Excavation sites will be populated by JavaScript -->
+                </div>
+                <button class="dig-button" onclick="showMainMenu()">🏠 BACK TO BASE CAMP</button>
+            </div>
+        </div>
+
+        <!-- Excavation Screen -->
+        <div id="excavation-site" class="screen">
+            <!-- Site Header -->
+            <div class="site-header-bar">
+                <div class="site-info">
+                    <h2 id="site-name">Corporate Email Chain - Site Alpha</h2>
+                    <p id="site-description">Investigating suspicious activity in corporate communications</p>
+                </div>
+                <div class="excavation-progress">
+                    <div class="progress-info">
+                        <span>Layer <span id="current-layer">1</span> of <span id="total-layers">5</span></span>
+                        <div class="depth-meter">
+                            <div id="depth-progress" class="depth-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Excavation Area -->
+            <div class="excavation-workspace">
+                <!-- Email Layer Display -->
+                <div class="email-layer-section">
+                    <div class="layer-header">
+                        <h3>📧 CURRENT LAYER</h3>
+                        <div class="layer-controls">
+                            <button id="excavate-btn" class="tool-btn primary" onclick="excavateLayer()">🏗️ EXCAVATE DEEPER</button>
+                            <button class="tool-btn" onclick="showSiteSelection()">🗺️ CHANGE SITE</button>
+                        </div>
+                    </div>
+                    <div id="email-display" class="email-container">
+                        <!-- Current email will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Tools Panel -->
+                <div class="tools-panel">
+                    <h3>🔧 FORENSICS TOOLS</h3>
+                    <div id="available-tools" class="tools-grid">
+                        <!-- Available tools will be populated -->
+                    </div>
+                    <div id="analysis-results" class="analysis-results">
+                        <h4>📋 Analysis Results</h4>
+                        <div id="results-content" class="results-content">
+                            <p>Select a tool to begin analysis...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discovery Panel -->
+            <div class="discovery-panel">
+                <h3>🏺 DISCOVERIES</h3>
+                <div id="discoveries-log" class="discoveries-log">
+                    <p>No discoveries yet. Use your tools to analyze the email layers.</p>
+                </div>
+                <button id="document-findings" class="dig-button" onclick="documentFindings()" disabled>📝 DOCUMENT FINDINGS</button>
+            </div>
+        </div>
+
+        <!-- Analysis Modal -->
+        <div id="analysis-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">🔍 Tool Analysis</h3>
+                    <button class="close-btn" onclick="closeAnalysisModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div id="tool-analysis-content" class="tool-analysis">
+                        <!-- Analysis content will be populated -->
+                    </div>
+                    <div class="analysis-actions">
+                        <button id="flag-threat" class="action-btn danger" onclick="flagThreat()">🚨 FLAG AS THREAT</button>
+                        <button id="mark-safe" class="action-btn safe" onclick="markSafe()">✅ MARK AS SAFE</button>
+                        <button class="action-btn" onclick="closeAnalysisModal()">📋 CONTINUE ANALYSIS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Site Completion Screen -->
+        <div id="site-completion" class="screen">
+            <div class="completion-report">
+                <h2 id="completion-title">🏆 EXCAVATION COMPLETE!</h2>
+                
+                <div class="completion-stats">
+                    <div class="stat-section">
+                        <h3>📊 Site Analysis Summary</h3>
+                        <div id="site-summary" class="summary-grid">
+                            <!-- Summary stats will be populated -->
+                        </div>
+                    </div>
+
+                    <div class="stat-section">
+                        <h3>🏺 Artifacts Discovered</h3>
+                        <div id="new-artifacts" class="artifacts-grid">
+                            <!-- New artifacts will be displayed -->
+                        </div>
+                    </div>
+
+                    <div class="stat-section">
+                        <h3>📝 Excavation Report</h3>
+                        <div id="excavation-report" class="report-text">
+                            <!-- Detailed report will be generated -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="completion-actions">
+                    <button class="dig-button primary" onclick="showSiteSelection()">🗺️ NEXT EXCAVATION</button>
+                    <button class="dig-button" onclick="showArtifacts()">🏺 VIEW COLLECTION</button>
+                    <button class="dig-button" onclick="showMainMenu()">🏠 BACK TO BASE CAMP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
