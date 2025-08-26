@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Travel Phishing Hunter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="time-portal">
+                <h1>⏳ TIME TRAVEL PHISHING HUNTER</h1>
+                <p class="mission-briefing">Journey through time to learn phishing prevention across different technological eras</p>
+            </div>
+            
+            <div class="agent-status">
+                <div class="agent-card">
+                    <h3>🕵️ Agent Status</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Rank</span>
+                            <span id="agent-rank" class="stat-value">Novice Agent</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Score</span>
+                            <span id="total-score" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Eras Completed</span>
+                            <span id="eras-completed" class="stat-value">0/6</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Accuracy</span>
+                            <span id="overall-accuracy" class="stat-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-modes">
+                <button class="mode-button primary" onclick="startStoryMode()">
+                    <span class="mode-icon">📖</span>
+                    <span class="mode-title">Story Mode</span>
+                    <span class="mode-desc">Guided journey through time</span>
+                </button>
+                <button class="mode-button" onclick="startPracticeMode()">
+                    <span class="mode-icon">🎯</span>
+                    <span class="mode-title">Practice Mode</span>
+                    <span class="mode-desc">Replay any unlocked era</span>
+                </button>
+                <button class="mode-button" onclick="showAchievements()">
+                    <span class="mode-icon">🏆</span>
+                    <span class="mode-title">Achievements</span>
+                    <span class="mode-desc">View your progress</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Timeline Navigation -->
+        <div id="timeline-screen" class="screen">
+            <div class="timeline-header">
+                <h2>🌐 TIME PORTAL NAVIGATION</h2>
+                <p>Select an era to begin your mission</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div id="timeline-track" class="timeline-track">
+                    <!-- Timeline nodes will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="timeline-controls">
+                <button class="control-btn" onclick="showMainMenu()">⬅️ Back to Base</button>
+                <div class="mode-indicator">
+                    <span id="current-mode">Story Mode</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Era Interface -->
+        <div id="era-screen" class="screen">
+            <!-- Era Header -->
+            <div id="era-header" class="era-header">
+                <div class="era-info">
+                    <h2 id="era-name">Early Internet Era</h2>
+                    <p id="era-years">1995 - 2000</p>
+                    <p id="era-description">The dawn of consumer internet and basic email communication</p>
+                </div>
+                <div class="era-progress">
+                    <div class="progress-stats">
+                        <span>Scenario <span id="current-scenario-num">1</span> of <span id="total-scenarios">5</span></span>
+                        <div class="progress-bar">
+                            <div id="scenario-progress" class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="era-timer">
+                        <span id="era-time-remaining">30:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Context Panel -->
+            <div id="tech-context" class="tech-context">
+                <h3>📡 Era Technology Context</h3>
+                <div id="tech-features" class="tech-features">
+                    <!-- Technology features will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Scenario Container -->
+            <div id="scenario-container" class="scenario-container">
+                <!-- Scenario content will be populated by JavaScript -->
+            </div>
+
+            <!-- Era Controls -->
+            <div class="era-controls">
+                <button class="control-btn" onclick="showTimeline()">🌐 Timeline</button>
+                <button class="control-btn" onclick="showMainMenu()">🏠 Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Email Viewer -->
+        <div id="email-viewer" class="email-viewer">
+            <div class="email-header">
+                <div class="email-controls">
+                    <button class="email-btn" onclick="closeEmailViewer()">✖️ Close</button>
+                    <button class="email-btn" onclick="toggleMagnifier()">🔍 Examine</button>
+                </div>
+                <div class="email-metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">From:</span>
+                        <span id="email-from" class="metadata-value">sender@example.com</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">To:</span>
+                        <span id="email-to" class="metadata-value">you@email.com</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Subject:</span>
+                        <span id="email-subject" class="metadata-value">Email Subject</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Date:</span>
+                        <span id="email-date" class="metadata-value">Today</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="email-body">
+                <div id="email-content" class="email-content">
+                    <!-- Email content will be populated -->
+                </div>
+                <div id="email-attachments" class="email-attachments">
+                    <!-- Attachments will be populated if present -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Panel -->
+        <div id="analysis-panel" class="analysis-panel">
+            <h3>🔍 Phishing Analysis</h3>
+            
+            <!-- Red Flags Checklist -->
+            <div class="red-flags-section">
+                <h4>Red Flag Checklist</h4>
+                <div id="red-flags-list" class="red-flags-list">
+                    <!-- Red flags will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Suspicion Level -->
+            <div class="suspicion-section">
+                <h4>Suspicion Level</h4>
+                <div class="suspicion-slider">
+                    <input type="range" id="suspicion-level" min="1" max="10" value="5" 
+                           oninput="updateSuspicionDisplay(this.value)">
+                    <div class="slider-labels">
+                        <span>Legitimate</span>
+                        <span id="suspicion-value">5</span>
+                        <span>Phishing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confidence Meter -->
+            <div class="confidence-section">
+                <h4>Confidence Level</h4>
+                <div class="confidence-buttons">
+                    <button class="confidence-btn" data-confidence="low" onclick="setConfidence('low')">
+                        Unsure
+                    </button>
+                    <button class="confidence-btn" data-confidence="medium" onclick="setConfidence('medium')">
+                        Somewhat Sure
+                    </button>
+                    <button class="confidence-btn active" data-confidence="high" onclick="setConfidence('high')">
+                        Very Sure
+                    </button>
+                </div>
+            </div>
+
+            <!-- Decision Buttons -->
+            <div class="decision-section">
+                <button id="legitimate-btn" class="decision-btn legitimate" onclick="submitAnswer('legitimate')">
+                    ✅ LEGITIMATE
+                </button>
+                <button id="phishing-btn" class="decision-btn phishing" onclick="submitAnswer('phishing')">
+                    ⚠️ PHISHING
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Modal -->
+        <div id="results-modal" class="modal">
+            <div class="modal-content">
+                <div class="result-header">
+                    <h3 id="result-title">Scenario Complete</h3>
+                    <div id="result-icon" class="result-icon">✅</div>
+                </div>
+                
+                <div class="result-details">
+                    <div class="score-breakdown">
+                        <div class="score-item">
+                            <span class="score-label">Base Points:</span>
+                            <span id="base-points" class="score-value">100</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">Speed Bonus:</span>
+                            <span id="speed-bonus" class="score-value">50</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">Red Flag Bonus:</span>
+                            <span id="redflag-bonus" class="score-value">75</span>
+                        </div>
+                        <div class="score-item total">
+                            <span class="score-label">Total:</span>
+                            <span id="total-points" class="score-value">225</span>
+                        </div>
+                    </div>
+                    
+                    <div class="explanation-section">
+                        <h4>Explanation</h4>
+                        <p id="scenario-explanation">Detailed explanation of why this was/wasn't phishing</p>
+                    </div>
+                    
+                    <div class="historical-context">
+                        <h4>Historical Context</h4>
+                        <p id="historical-explanation">Information about this type of attack in this era</p>
+                    </div>
+                    
+                    <div class="red-flags-review">
+                        <h4>Red Flags Review</h4>
+                        <div id="flags-review" class="flags-review">
+                            <!-- Red flags review will be populated -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-actions">
+                    <button class="result-btn" onclick="nextScenario()">Next Scenario ➡️</button>
+                    <button class="result-btn secondary" onclick="closeResultsModal()">Review</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Era Completion Modal -->
+        <div id="era-complete-modal" class="modal">
+            <div class="modal-content">
+                <div class="era-complete-header">
+                    <h3>🎉 Era Complete!</h3>
+                    <div class="completion-stats">
+                        <div class="stat-circle">
+                            <span id="era-accuracy" class="big-number">85%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat-circle">
+                            <span id="era-score" class="big-number">1,250</span>
+                            <span class="stat-label">Era Score</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="era-achievements">
+                    <h4>Achievements Unlocked</h4>
+                    <div id="new-achievements" class="achievements-list">
+                        <!-- New achievements will be populated -->
+                    </div>
+                </div>
+                
+                <div class="era-complete-actions">
+                    <button class="result-btn primary" onclick="proceedToNextEra()">Continue Journey ➡️</button>
+                    <button class="result-btn" onclick="showTimeline()">View Timeline</button>
+                    <button class="result-btn secondary" onclick="replayEra()">Replay Era</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Screen -->
+        <div id="achievements-screen" class="screen">
+            <div class="achievements-header">
+                <h2>🏆 Agent Achievements</h2>
+                <p>Track your progress through time</p>
+            </div>
+            
+            <div class="achievements-categories">
+                <div class="achievement-category">
+                    <h3>🎯 Learning Achievements</h3>
+                    <div id="learning-achievements" class="achievements-grid">
+                        <!-- Learning achievements will be populated -->
+                    </div>
+                </div>
+                
+                <div class="achievement-category">
+                    <h3>🔍 Discovery Achievements</h3>
+                    <div id="discovery-achievements" class="achievements-grid">
+                        <!-- Discovery achievements will be populated -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="achievements-controls">
+                <button class="control-btn" onclick="showMainMenu()">🏠 Back to Base</button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="time-portal-loading">
+                <div class="portal-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+                <h3>🌀 Traveling Through Time...</h3>
+                <p id="loading-text">Calibrating temporal coordinates</p>
+            </div>
+        </div>
+
+        <!-- Score Tracker -->
+        <div id="score-tracker" class="score-tracker">
+            <div class="score-display">
+                <span class="score-label">Score:</span>
+                <span id="current-score" class="score-number">0</span>
+            </div>
+            <div class="streak-display">
+                <span class="streak-label">Streak:</span>
+                <span id="current-streak" class="streak-number">0</span>
+            </div>
+        </div>
+
+        <!-- Timer Display -->
+        <div id="scenario-timer" class="scenario-timer">
+            <div class="timer-display">
+                <span id="scenario-time">2:00</span>
+            </div>
+            <div class="timer-label">Scenario Time</div>
+        </div>
+
+        <!-- Magnifier Tool -->
+        <div id="magnifier" class="magnifier hidden">
+            <div class="magnifier-content">
+                <div class="magnifier-text">Click on text to examine for red flags</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game-data.js"></script>
+    <script src="js/game-logic.js"></script>
+</body>
+</html>
